@@ -1,0 +1,277 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+  /*
+    2. Remove default margin
+  */
+* {
+    margin: 0;
+}
+  /*
+    3. Allow percentage-based heights in the application
+  */
+html, body {
+    height: 100%;
+}
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+  /*
+    6. Improve media defaults
+  */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+  /*
+    7. Remove built-in form typography styles
+  */
+input, button, textarea, select {
+    font: inherit;
+}
+  /*
+    8. Avoid text overflows
+  */
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+  /*
+    9. Create a root stacking context
+  */
+#root, #__next {
+    isolation: isolate;
+}
+
+
+:root{
+    /* COLORS */
+    --clr-txt-400: hsl(240, 6%, 50%);
+    --clr-txt-500: hsl(237, 12%, 33%);
+    --clr-txt-600: hsl(14, 88%, 65%);
+    --clr-txt-700: hsl(238, 29%, 16%);
+
+    --clr-gradient-1: hsl(273, 75%, 66%);
+    --clr-gradient-2: hsl(240, 73%, 65%);
+
+    --clr-dividers: hsl(240, 5%, 91%);
+
+
+    /* TYPOGRAPHY */
+    --fs-400: .75rem;
+    --fs-500: .85rem;
+    --fs-600: 1.250rem;
+    --fs-700: 1.5rem;
+    --fs-800: 1.92rem;
+
+    --ff-400: 'Kumbh Sans', sans-serif;
+
+    --fw-400:400;
+    --fw-700:700;
+}
+
+body{
+    font-family: var(--ff-400);
+    font-size: var(--fs-400);
+    color: var(--clr-txt-400);
+}
+
+main {
+    background: linear-gradient(
+        var(--clr-gradient-1),
+        var(--clr-gradient-2)
+    );
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+}
+
+div.faq-card{
+    max-width: 915px;
+    background-color: white;
+    border-radius: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;
+    margin: 2em;
+}
+
+@media (max-width: 700px){
+  div.faq-card{
+    grid-template-columns: 1fr;
+    margin-top: 7.5em;
+  }
+}
+
+div.faq-card__wrapper{
+  display: block;
+  height: 100%;
+  position: relative;
+}
+
+picture.faq-card__img{
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    background-image: url(images/bg-pattern-desktop.svg);
+    background-repeat: no-repeat;
+    background-position-x: 113.5%;
+    background-position-y: 66.5%;
+    display: grid;
+    place-content: center;
+    position: relative;
+}
+
+@media (max-width: 700px){
+  picture.faq-card__img{
+    position: absolute;
+    overflow: visible;
+    width: 100%;
+    height: auto;
+    top: -8em;
+    display: block;
+    background-image: url(images/bg-pattern-desktop.svg);
+    background-size: 20em;
+    background-position-x: 50%;
+    background-position-y: -40px;
+    overflow: visible;
+    padding-bottom: 5em;
+  }
+}
+
+div.faq-card__wrapper::before{
+  background-image: url(images/illustration-box-desktop.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: -21%;
+  top: 40%;
+  z-index: 6;
+}
+
+@media (max-width: 700px){
+  div.faq-card__wrapper::before{
+    display: none;
+  }
+}
+
+picture.faq-card__img img{
+    margin-left: -6.375em;
+    transform: scale(1.2);
+}
+
+@media (max-width:700px){
+  picture.faq-card__img img{
+    margin-inline: auto;
+    width: 17em;
+    height: auto;
+  }
+}
+
+section.faq-card__text{
+    padding: 5em 8em 6.75em 1.25em;
+}
+
+@media (max-width: 700px){
+  section.faq-card__text{
+    margin-top: 5em;
+    padding: 5em 2em 4em;
+  }
+}
+
+h1.faq-card__title{
+    text-transform: uppercase;
+    font-size: var(--fs-800);
+    font-weight: var(--fw-700);
+    color: var(--clr-txt-700);
+    margin-bottom: 1.05rem;
+}
+
+@media (max-width:700px){
+  h1.faq-card__title{
+    text-align: center;
+  }
+}
+
+article.faq-card__faq{
+    border-bottom: 1px solid var(--clr-dividers);
+}
+
+article.faq-card__faq div.wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+article.faq-card__faq div.wrapper picture.faq-card__arrow{
+    margin-left: auto;
+    margin-right: 1.1em;
+    transition: all .5s ease-in-out;
+}
+
+h2.faq-card__question{
+    font-size: var(--fs-500);
+    font-weight: var(--fw-400);
+    color: var(--clr-txt-500);
+    padding: 1.125em 0 1.05em 0;
+}
+
+article.faq-card__faq:hover div.wrapper,
+article.faq-card__faq:hover h2.faq-card__question{
+    color: var(--clr-txt-600);
+    cursor: pointer;
+}
+
+/* HIGLIGHT ACTIVE QUESTION */
+
+article.faq-card__faq.active h2.faq-card__question{
+    color: var(--clr-txt-700);
+    font-weight: var(--fw-700);
+}
+
+article.faq-card__faq.active div.wrapper picture.faq-card__arrow{
+    transform: rotateX(180deg);
+}
+
+/* SHOWN ANSWER */
+
+article.faq-card__faq.active p.faq-card__answer{
+    max-height: 100px;
+    margin-top: -.365rem;
+    padding-bottom: 1.45em;
+    transition: max-height .5s ease-in-out, margin-top .5s ease-in-out, padding-bottom .5s ease-in-out;
+    overflow: hidden;
+}
+
+/*HIDE INACTIVE ANSWERS*/
+
+article.faq-card__faq:not(.active) p.faq-card__answer{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out, margin-top .5s ease-in-out, padding-bottom .5s ease-in-out;
+}
+
+
+
+
+
+
+.attribution { 
+        font-size: 11px; 
+        text-align: center; 
+    }
+    .attribution a { 
+        color: hsl(228, 45%, 44%); 
+    }
